@@ -3,18 +3,24 @@ import pygame as pg
 vec = pg.math.Vector2
 
 FPS = 60
-FIELD_COLOR = (48, 39, 32)
+FIELD_COLOR = 'black'
+BG_COLOR = 'white'
 
 SPRITE_DIR_PATH = 'assets/sprites'
+FONT_PATH = 'assets/fonts/FREAKSOFNATUREMASSIVE.ttf'
 
-ANIM_TIME_INTERVAL = 120 #miliseconds
-FAST_ANIM_TIME_INTERVAL = 20
+ANIM_TIME_INTERVAL = 150 #miliseconds
+FAST_ANIM_TIME_INTERVAL = 50
 
 TILE_SIZE = 50
 FIELD_SIZE = FIELD_W, FIELD_H = 10, 20
 FIELD_RES = FIELD_W * TILE_SIZE, FIELD_H * TILE_SIZE
 
+FIELD_SCALE_W, FIELD_SCALE_H = 1.8, 1.0
+WINDOW_RES = WINDOW_W, WINDOW_H = FIELD_RES[0] * FIELD_SCALE_W, FIELD_RES[1] * FIELD_SCALE_H
+
 INIT_POS_OFFSET = vec(FIELD_W // 2 - 1, 0)
+NEXT_POS_OFFSET = vec(FIELD_W * 1.3, FIELD_H * 0.45)
 MOVE_DIRECTIONS = {'left' : vec(-1, 0), 'right' : vec(1, 0), 'down' : vec(0, 1)}
 
 TETROMINOES = {

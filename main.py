@@ -1,17 +1,26 @@
 from settings import *  # noqa: F403
-from tetris import Tetris
+from tetris import Tetris, Text
 import sys
+import pathlib
 
 
 class GameInstance:
     def __init__(self):
         pg.init()
         pg.display.set_caption("MyTetris")
-        self.screen = pg.display.set_mode(FIELD_RES)
+        self.screen = pg.display.set_mode(WINDOW_RES)
         self.clock = pg.time.Clock()
         self.set_timer()
+        self.images = self.load_images()
         self.tetris = Tetris(self)
+        self.text = Text(self)
 
+    def load_images(self):
+        files = [item for item in pathlib.Path(SPRITE_DIR_PATH).rglob('*.png') if item.is_file()]
+        images = [pg.image.load(file).convert_alpha() for file in files]
+        images = [pg.transform.scale(image, (TILE_SIZE, TILE_SIZE)) for image in images]
+        return images
+    
     def update(self):
         self.tetris.update()
         self.clock.tick(FPS)  # noqa: F405
@@ -25,8 +34,10 @@ class GameInstance:
         pg.time.set_timer(self.user_event_fast, FAST_ANIM_TIME_INTERVAL)
 
     def draw(self):
-        self.screen.fill(color=FIELD_COLOR)
+        self.screen.fill(color=BG_COLOR)
+        self.screen.fill(color=FIELD_COLOR, rect=(0, 0, *FIELD_RES))
         self.tetris.draw()
+        self.text.draw()
         pg.display.flip()
             
     def check_events(self):
