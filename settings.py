@@ -7,7 +7,7 @@ FIELD_COLOR = 'black'
 BG_COLOR = 'white'
 
 SPRITE_DIR_PATH = 'assets/sprites'
-FONT_PATH = 'assets/fonts/FREAKSOFNATUREMASSIVE.ttf'
+FONT_PATH = 'assets/fonts/TimberlyScript.ttf'
 
 ANIM_TIME_INTERVAL = 150 #miliseconds
 FAST_ANIM_TIME_INTERVAL = 50

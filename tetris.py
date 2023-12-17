@@ -10,16 +10,16 @@ class Text:
         self.font = ft.Font(FONT_PATH)
     
     def draw(self):
-        self.font.render_to(self.game.screen, (WINDOW_W * 0.6, WINDOW_H * 0.03),
+        self.font.render_to(self.game.screen, (WINDOW_W * 0.65, WINDOW_H * 0.03),
                             text = 'TETRIS', fgcolor='black',
                             size = TILE_SIZE * 1.65, bgcolor='white')
-        self.font.render_to(self.game.screen, (WINDOW_W * 0.65, WINDOW_H * 0.2),
-                            text = 'next', fgcolor='blue',
+        self.font.render_to(self.game.screen, (WINDOW_W * 0.68, WINDOW_H * 0.25),
+                            text = 'NEXT', fgcolor='blue',
                             size = TILE_SIZE * 1.4, bgcolor='white')
-        self.font.render_to(self.game.screen, (WINDOW_W * 0.64, WINDOW_H * 0.67),
-                            text = 'score', fgcolor='black',
+        self.font.render_to(self.game.screen, (WINDOW_W * 0.68, WINDOW_H * 0.67),
+                            text = 'SCORE', fgcolor='purple',
                             size = TILE_SIZE * 1.4, bgcolor='white')
-        self.font.render_to(self.game.screen, (WINDOW_W * 0.7, WINDOW_H * 0.8),
+        self.font.render_to(self.game.screen, (WINDOW_W * 0.75, WINDOW_H * 0.75),
                             text = f'{self.game.tetris.score}', fgcolor='red',
                             size = TILE_SIZE * 1.4, bgcolor='white')
         
