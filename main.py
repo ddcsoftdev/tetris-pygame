@@ -3,6 +3,26 @@ from tetris import Tetris, Text
 import sys
 import pathlib
 
+"""
+    TODO:
+    
+    * Level system which makes block drop faster (5 Levels)
+    * Save System with JSON: saves 5 top scores with name
+        -Ability to completely wipe JSON file to start over
+    * End game. If top 5 score enter 3 leter name and it saves
+    * Credit system. Need 1 Credit to play (include cheat to add). This saves to JSON
+    * Store coins. Need store coins to buy new background image. Coins save to JSON
+    * Ability to pick which background image you want before playing a game
+    * Main menu: play (only if you have credits), store, select background Image
+        -All images appear but not purchased are grayed out and cannot select
+        -Bought background images are saved to JSON
+    * Game over screen: replay or go to menu
+    * Save file in JSON:
+        -Top 5 scores with Name and Score
+        -Credits to play
+        -Shop Coins
+        -Purchased background images
+"""
 
 class GameInstance:
     def __init__(self):
