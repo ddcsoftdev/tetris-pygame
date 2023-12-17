@@ -11,16 +11,16 @@ class Text:
     
     def draw(self):
         self.font.render_to(self.game.screen, (WINDOW_W * 0.6, WINDOW_H * 0.03),
-                            text = "TETRIS", fgcolor='black',
+                            text = 'TETRIS', fgcolor='black',
                             size = TILE_SIZE * 1.65, bgcolor='white')
         self.font.render_to(self.game.screen, (WINDOW_W * 0.65, WINDOW_H * 0.2),
-                            text = "next", fgcolor='blue',
+                            text = 'next', fgcolor='blue',
                             size = TILE_SIZE * 1.4, bgcolor='white')
         self.font.render_to(self.game.screen, (WINDOW_W * 0.64, WINDOW_H * 0.67),
-                            text = "score", fgcolor='black',
+                            text = 'score', fgcolor='black',
                             size = TILE_SIZE * 1.4, bgcolor='white')
         self.font.render_to(self.game.screen, (WINDOW_W * 0.7, WINDOW_H * 0.8),
-                            text = "000", fgcolor='green',
+                            text = f'{self.game.tetris.score}', fgcolor='red',
                             size = TILE_SIZE * 1.4, bgcolor='white')
         
         
@@ -37,6 +37,10 @@ class Tetris:
         self.full_lines = 0
         self.points_per_line = {0: 0, 1: 100, 2: 250, 3: 500, 4: 1200}
     
+    def get_score(self):
+        self.score += self.points_per_line[self.full_lines]
+        self.full_lines = 0
+        
     def check_full_lines(self):
         row = FIELD_H - 1
         for y in range(FIELD_H - 1, -1, -1):
@@ -51,6 +55,7 @@ class Tetris:
                 for x in range(FIELD_W):
                     self.field_array[row][x].alive = False
                     self.field_array[row][x] = 0
+                self.full_lines += 1
         
     def put_tetromino_blocks_in_array(self):
         for block in self.tetromino.blocks:
@@ -101,6 +106,7 @@ class Tetris:
             self.check_full_lines()
             self.tetromino.update()
             self.check_tetromino_landed()
+            self.get_score()
         self.sprite_group.update()
     
     def draw (self):
