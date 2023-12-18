@@ -9,7 +9,7 @@ BG_COLOR = 'white'
 SPRITE_DIR_PATH = 'assets/sprites'
 FONT_PATH = 'assets/fonts/TimberlyScript.ttf'
 
-ANIM_TIME_INTERVAL = 150 #miliseconds
+ANIM_TIME_INTERVAL = 250 #miliseconds
 FAST_ANIM_TIME_INTERVAL = 50
 
 TILE_SIZE = 50

@@ -16,11 +16,17 @@ class Text:
         self.font.render_to(self.game.screen, (WINDOW_W * 0.68, WINDOW_H * 0.25),
                             text = 'NEXT', fgcolor='blue',
                             size = TILE_SIZE * 1.4, bgcolor='white')
-        self.font.render_to(self.game.screen, (WINDOW_W * 0.68, WINDOW_H * 0.67),
+        self.font.render_to(self.game.screen, (WINDOW_W * 0.68, WINDOW_H * 0.55),
                             text = 'SCORE', fgcolor='purple',
                             size = TILE_SIZE * 1.4, bgcolor='white')
-        self.font.render_to(self.game.screen, (WINDOW_W * 0.75, WINDOW_H * 0.75),
+        self.font.render_to(self.game.screen, (WINDOW_W * 0.75, WINDOW_H * 0.64),
                             text = f'{self.game.tetris.score}', fgcolor='red',
+                            size = TILE_SIZE * 1.4, bgcolor='white')
+        self.font.render_to(self.game.screen, (WINDOW_W * 0.68, WINDOW_H * 0.74),
+                            text = 'LEVEL', fgcolor='purple',
+                            size = TILE_SIZE * 1.4, bgcolor='white')
+        self.font.render_to(self.game.screen, (WINDOW_W * 0.75, WINDOW_H * 0.83),
+                            text = f'{self.game.tetris.level}', fgcolor='blue',
                             size = TILE_SIZE * 1.4, bgcolor='white')
         
         
@@ -36,11 +42,31 @@ class Tetris:
         self.score = 0
         self.full_lines = 0
         self.points_per_line = {0: 0, 1: 100, 2: 250, 3: 500, 4: 1200}
+        
+        self.level = 0
+        self.level_speed_mod = 1
     
     def get_score(self):
         self.score += self.points_per_line[self.full_lines]
         self.full_lines = 0
         
+        if ((self.score > 500 and self.level <= 0)
+            or (self.score > 1000 and self.level <= 1)
+            or (self.score > 2000 and self.level <= 2)
+            or (self.score > 3000 and self.level <= 3)):
+            self.level += 1
+            self.set_level_speed()
+        
+    def set_level_speed(self):
+        if self.level == 1:
+            self.level_speed_mod = 0.8
+        elif self.level == 2:
+            self.level_speed_mod = 0.6
+        elif self.level == 3:
+            self.level_speed_mod = 0.5
+        elif self.level > 3:
+            self.level_speed_mod = 0.4     
+            
     def check_full_lines(self):
         row = FIELD_H - 1
         for y in range(FIELD_H - 1, -1, -1):

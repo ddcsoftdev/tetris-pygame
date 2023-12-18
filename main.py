@@ -41,6 +41,11 @@ class GameInstance:
         images = [pg.transform.scale(image, (TILE_SIZE, TILE_SIZE)) for image in images]
         return images
     
+    def modify_level_speed(self):
+        self.time_mod = self.tetris.level_speed_mod
+        pg.time.set_timer(self.user_event, ANIM_TIME_INTERVAL * self.time_mod)
+        pg.time.set_timer(self.user_event_fast, FAST_ANIM_TIME_INTERVAL * self.time_mod)
+        
     def update(self):
         self.tetris.update()
         self.clock.tick(FPS)  # noqa: F405
