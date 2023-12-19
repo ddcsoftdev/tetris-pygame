@@ -92,7 +92,7 @@ class Tetris:
         return [[0 for x in range(FIELD_W)] for y in range(FIELD_H)]
     
     def is_game_over(self):
-        if self.tetromino.blocks[0].pos.y == INIT_POS_OFFSET[0]:
+        if self.tetromino.blocks[0].pos.y <= INIT_POS_OFFSET[0]:
             pg.time.wait(300)
             return True
     def check_tetromino_landed(self):
